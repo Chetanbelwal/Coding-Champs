@@ -11,7 +11,6 @@ const home = async (req, res) => {
 };
 
 
-
 // Registration logic
 
 //1 Get Registration Data: retreive userdata( username, email and password)
