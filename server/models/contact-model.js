@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// create schema
 const contactSchema = new mongoose.Schema({
     username: {
       type: String,
@@ -15,7 +16,7 @@ const contactSchema = new mongoose.Schema({
     },
   });
 
-
+// create model from that schema
   const Contact = new mongoose.model("Contact", contactSchema);
 
 module.exports = Contact;

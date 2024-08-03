@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// creating objects of state so we wont need to create new state for each field
 export const Register = () => {
   const [user, setUser] = useState({
     username: "",
@@ -8,6 +9,7 @@ export const Register = () => {
     password: "",
   });
 
+  // Handling the input values
   const handleInput = (e) => {
     console.log(e);
     let name = e.target.name;
@@ -15,7 +17,7 @@ export const Register = () => {
 
     setUser({
       ...user,
-      [name]: value,
+      [name]: value, //here name is dynamic means jis  value update kro name ke hisab se name =email, username, phonenumber etc
     });
   };
 
