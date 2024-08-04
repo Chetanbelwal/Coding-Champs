@@ -1,5 +1,3 @@
-export const Service = ()=>{
-    return <h1>
-        Welcome To Service Page
-    </h1>
-}
+export const Service = () => {
+  return <h1>Service Name</h1>;
+};
