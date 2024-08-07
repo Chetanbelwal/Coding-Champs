@@ -1,8 +1,17 @@
 const dotenv = require("dotenv");
 dotenv.config();
-
+const cors = require("cors")
 const express = require("express");
 const app = express();
+
+// handling corsOptions
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  methodS: "POST, PUT, PATCH, DELETE, HEAD"
+}
+app.use(cors(corsOptions))
+
+
 app.use(express.json());
 
 const authRoute = require("./router/auth-router.js");

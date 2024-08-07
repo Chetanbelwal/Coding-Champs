@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // creating objects of state so we wont need to create new state for each field
 export const Register = () => {
@@ -9,6 +10,9 @@ export const Register = () => {
     password: "",
   });
 
+  // defining useNavigate object
+
+  const navigate = useNavigate();
   // Handling the input values
   const handleInput = (e) => {
     console.log(e);
@@ -22,9 +26,28 @@ export const Register = () => {
   };
 
   // handle form on submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(user);
+      const response = await fetch(
+        "http://localhost:5000/api/auth/registration",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        setUser({ username: "", email: "", phone: "", password: "" });
+        navigate("/login");
+      }
+      console.log(response);
+    } catch (error) {
+      console.log("Error in registration handle submit", error);
+    }
   };
 
   return (
@@ -73,6 +96,7 @@ export const Register = () => {
                       name="phone"
                       value={user.phone}
                       onChange={handleInput}
+                      placeholder="phone Number"
                     />
                   </div>
                   <div>
