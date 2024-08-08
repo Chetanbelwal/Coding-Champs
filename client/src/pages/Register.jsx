@@ -41,6 +41,7 @@ export const Register = () => {
         }
       );
       if (response.ok) {
+        alert("Successfully Registered");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
       }
