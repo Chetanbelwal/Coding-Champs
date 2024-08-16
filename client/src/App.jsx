@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/about" element={<About />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/service" element={<Service />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          <Route path="/registration" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
 
           {/* If any route other than above is visited we will redirect user to error 404 page */}

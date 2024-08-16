@@ -41,6 +41,13 @@ export const Register = () => {
         }
       );
       if (response.ok) {
+        // response itself consist of the data that we passed to it from server there we have sent out the token also
+        const resData = await response.json()
+        console.log("Response from server",resData)
+
+        // calling LocalStorage Function to store token we get from server in local storage 
+        localStorage.setItem("token",resData.token)
+
         alert("Successfully Registered");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
