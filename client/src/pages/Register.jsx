@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 // creating objects of state so we wont need to create new state for each field
 export const Register = () => {
@@ -13,6 +14,10 @@ export const Register = () => {
   // defining useNavigate object
 
   const navigate = useNavigate();
+
+// using method of our custom hook useAuth
+  const {storeTokenInLS} = useAuth()
+
   // Handling the input values
   const handleInput = (e) => {
     console.log(e);
@@ -46,7 +51,8 @@ export const Register = () => {
         console.log("Response from server",resData)
 
         // calling LocalStorage Function to store token we get from server in local storage 
-        localStorage.setItem("token",resData.token)
+
+        storeTokenInLS(resData.token)
 
         alert("Successfully Registered");
         setUser({ username: "", email: "", phone: "", password: "" });

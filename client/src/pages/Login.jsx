@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -11,6 +12,9 @@ export const Login = () => {
   // defining useNavigate object
 
   const navigate = useNavigate();
+
+  // using method of our custom hook useAuth
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     console.log(e);
@@ -41,7 +45,8 @@ export const Login = () => {
         console.log("Response from server", resData);
 
         // calling LocalStorage Function to store token we get from server in local storage
-        localStorage.setItem("token", resData.token);
+        storeTokenInLS(resData.token);
+
         alert("Logged in successfully");
         setUser({ email: "", password: "" });
         navigate("/");
