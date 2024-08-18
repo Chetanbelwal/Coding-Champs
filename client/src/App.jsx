@@ -7,6 +7,8 @@ import { Error } from "./pages/Error";
 import { Navbar } from "./components/Navbar";
 import { Service } from "./pages/Service";
 import { Login } from "./pages/Login";
+import { Logout } from "./pages/Logout";
+
 
 import "./App.css";
 
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/service" element={<Service />}></Route>
           <Route path="/registration" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
 
           {/* If any route other than above is visited we will redirect user to error 404 page */}
           <Route path="*" element={<Error />} />
