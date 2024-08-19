@@ -89,5 +89,23 @@ try {
 }
 }
 
+//---------------------------------
+// User logic To send user data
+//---------------------------------
 
-module.exports = { home, registration, login };
+const user = async (req, res) => {
+  try {
+    // const userData = await User.find({});
+    const userData = req.user;
+    console.log("This is the userdata", userData);
+    return res.status(200).json({ msg: userData });
+  } catch (error) {
+    console.log(` error from user route ${error}`);
+  }
+};
+
+
+
+
+
+module.exports = { home, registration, login, user };

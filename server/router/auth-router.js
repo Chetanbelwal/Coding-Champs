@@ -6,6 +6,7 @@ const router = express.Router();
 const authcontrollers = require("../controller/auth-controller.js"); // Assuming auth-controller.js exports functions
 const validate = require("../middleware/validate-middleware.js");
 const signUpSchema = require("../validator/auth-validator.js");
+const authMiddleware = require("../middleware/auth-middleware.js")
 
 
 // Route Definitions
@@ -16,6 +17,8 @@ router
   .post(validate(signUpSchema), authcontrollers.registration);
 
 router.route("/login").post(authcontrollers.login);
+
+router.route("/user").post(authMiddleware, authcontrollers.user);
 
 // Export router (optional)
 module.exports = router;
