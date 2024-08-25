@@ -10,7 +10,6 @@ const home = async (req, res) => {
   }
 };
 
-
 // Registration logic
 
 //1 Get Registration Data: retreive userdata( username, email and password)
@@ -19,10 +18,7 @@ const home = async (req, res) => {
 //3 hash password
 //4 Create User
 //5 Save it to database
-//6 Respond with registration successfull 
-
-
-
+//6 Respond with registration successfull
 
 const registration = async (req, res) => {
   try {
@@ -43,51 +39,44 @@ const registration = async (req, res) => {
       password,
     });
 
-    res
-      .status(201)
-      .json({
-        msg: userData,
-        token: await userData.generateToken(),
-        userId: userData._id.toString(),
-      });
+    res.status(201).json({
+      msg: userData,
+      token: await userData.generateToken(),
+      userId: userData._id.toString(),
+    });
   } catch (error) {
     res.status(500).json("Error Error Error");
   }
 };
 
-
 const login = async (req, res) => {
-try {
-  const {email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
     const userExist = await User.findOne({ email: email });
     if (!userExist) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
 
-
     // const isPasswordCorrect = await bcrypt.compare(password,userExist.password)
-    
-    // This above Line can be written as this one as below and definition of comparePassword will be at user-model where we can grab password from dabtabase using this.password
-    const isPasswordCorrect = await userExist.comparePassword(password)
 
-    if (isPasswordCorrect){
-      res
-      .status(200)
-      .json({
-        msg: 'Logged In Successfully',
+    // This above Line can be written as this one as below and definition of comparePassword will be at user-model where we can grab password from dabtabase using this.password
+    const isPasswordCorrect = await userExist.comparePassword(password);
+
+    if (isPasswordCorrect) {
+      res.status(200).json({
+        msg: "Logged In Successfully",
         token: await userExist.generateToken(),
         userId: userExist._id.toString(),
       });
+    } else {
+      res.status(401).json({ msg: "Invalid email or password" });
     }
-    else{
-      res.status(401).json({msg:"Invalid email or password"})
-    }
-} catch (error) {
-  // res.status(500).json("Error Error Error");
-  next(error)
-}
-}
+  } catch (error) {
+    // res.status(500).json("Error Error Error");
+    next(error);
+  }
+};
 
 //---------------------------------
 // User logic To send user data
@@ -98,14 +87,10 @@ const user = async (req, res) => {
     // const userData = await User.find({});
     const userData = req.user;
     console.log("This is the userdata", userData);
-    return res.status(200).json({ msg: userData });
+    return res.status(200).json({ userData });
   } catch (error) {
     console.log(` error from user route ${error}`);
   }
 };
-
-
-
-
 
 module.exports = { home, registration, login, user };
