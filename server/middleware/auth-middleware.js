@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user-model");
 
+// A middleware that will verify the token whether use is genuine or not and in response it have userdata expect password which is passed as req.user
+
+
 const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
 
@@ -16,7 +19,7 @@ const authMiddleware = async (req, res, next) => {
   console.log(jwtToken);
 
   try {
-    // Verifying the token
+    // Verifying the token it will give us all the data we pass as payload using jwt.sign
     const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
     console.log(isVerified);
 
@@ -24,6 +27,12 @@ const authMiddleware = async (req, res, next) => {
     const userData = await User.findOne({ email: isVerified.email }).select({
       password: 0,
     });
+
+    // In Express.js, req (request) object is an object that contains information
+    // about the HTTP request. By adding custom properties to req, you can
+    // pass information between middleware functions or make it available
+    // in your route handlers. same we are doing below now our route can directly use req.user, req.token etc
+
 
     req.token = token;
     req.user = userData;
