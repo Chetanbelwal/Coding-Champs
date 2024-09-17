@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
 
-export const Contact = () => {
-  const [contact, setContact] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+const defaultContactFormData = {
+  username: "",
+  email: "",
+  message: "",
+};
 
-  //  const [data, setData] = useState(defaultContactFormData);
+export const Contact = () => {
+  const [contact, setContact] = useState(defaultContactFormData);
+
+ 
+
+  // const [data, setData] = useState(defaultContactFormData);
   const [userData, setUserData] = useState(true);
   const { user } = useAuth();
 
@@ -34,11 +38,33 @@ export const Contact = () => {
     });
   };
 
-  // handle fomr getFormSubmissionInfo
-  const handleSubmit = (e) => {
+  // handle for getFormSubmissionInfo
+  const handleContactForm = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/form/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
 
-    console.log(contact);
+      console.log("response: ", response);
+      // alert(response);
+
+      if (response.ok) {
+        setContact(defaultContactFormData);
+        const responseData = await response.json();
+        alert(responseData);
+        console.log(responseData);
+      } else {
+        // Handle API error here
+        console.error("API Error:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -55,7 +81,7 @@ export const Contact = () => {
 
           {/* contact form content actual  */}
           <section className="section-form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleContactForm}>
               <div>
                 <label htmlFor="username">username</label>
                 <input
