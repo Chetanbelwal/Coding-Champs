@@ -16,6 +16,7 @@ app.use(express.json());
 
 const authRoute = require("./router/auth-router.js");
 const contactRoute = require("./router/contact-router.js")
+const serviceRoute = require("./router/service-router.js")
 const connectToDb = require("./utils/db.js");
 const errorMiddleware = require("./middleware/errorMiddleware.js")
 
@@ -23,6 +24,8 @@ const port = process.env.PORT;
 
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
+app.use("/api/data", serviceRoute);
+
 app.use(errorMiddleware);
 
 connectToDb().then(() => {
