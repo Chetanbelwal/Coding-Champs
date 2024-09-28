@@ -11,6 +11,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [services, setServices] = useState([]); 
 
   // isLogged in will have true if we have token value and false if we don't have token value
   let isLoggedIn = !!token;
@@ -53,13 +54,34 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Function to fetch services data
+  const getServiceData = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/data/service", {
+        method: "GET",
+
+      });
+
+      if (response.ok) {
+        const services = await response.json(); // Parse the JSON response
+        setServices(services.data); // Update the state with the fetched data
+        
+      }
+      console.log("Services: ", response); 
+
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   useEffect(() => {
+    getServiceData();
     userAuthentication();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ LogoutUser, storeTokenInLS, isLoggedIn, user }}
+      value={{ LogoutUser, storeTokenInLS, isLoggedIn, user, services }}
     >
       {children}
     </AuthContext.Provider>
