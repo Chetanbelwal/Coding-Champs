@@ -45,10 +45,12 @@ export const Register = () => {
           body: JSON.stringify(user),
         }
       );
+
+       // response itself consist of the data that we passed to it from server there we have sent out the token also
+       const resData = await response.json()
+       console.log("Response from server",resData)
       if (response.ok) {
-        // response itself consist of the data that we passed to it from server there we have sent out the token also
-        const resData = await response.json()
-        console.log("Response from server",resData)
+       
 
         // calling LocalStorage Function to store token we get from server in local storage 
 
@@ -58,7 +60,9 @@ export const Register = () => {
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
       }
-      console.log(response);
+      else{
+        alert(resData.extraDetails?resData.extraDetails:resData.message)
+      }
     } catch (error) {
       console.log("Error in registration handle submit", error);
     }

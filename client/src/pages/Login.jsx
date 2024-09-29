@@ -39,10 +39,11 @@ export const Login = () => {
         },
         body: JSON.stringify(user),
       });
+      // response itself consist of the data that we passed to it from server there we have sent out the token also
+      const resData = await response.json();
+      console.log("Response from server", resData);
       if (response.ok) {
-        // response itself consist of the data that we passed to it from server there we have sent out the token also
-        const resData = await response.json();
-        console.log("Response from server", resData);
+        
 
         // calling LocalStorage Function to store token we get from server in local storage
         storeTokenInLS(resData.token);
@@ -51,7 +52,8 @@ export const Login = () => {
         setUser({ email: "", password: "" });
         navigate("/");
       } else {
-        alert("Invalid Credentials");
+        alert(resData.extraDetails?resData.extraDetails:resData.message)
+        // alert("Invalid cred")
       }
       console.log(response);
     } catch (error) {
