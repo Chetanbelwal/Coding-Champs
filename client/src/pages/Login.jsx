@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -48,11 +49,11 @@ export const Login = () => {
         // calling LocalStorage Function to store token we get from server in local storage
         storeTokenInLS(resData.token);
 
-        alert("Logged in successfully");
+        toast.success("Logged in successfully");
         setUser({ email: "", password: "" });
         navigate("/");
       } else {
-        alert(resData.extraDetails?resData.extraDetails:resData.message)
+        toast.error(resData.extraDetails?resData.extraDetails:resData.message)
         // alert("Invalid cred")
       }
       console.log(response);

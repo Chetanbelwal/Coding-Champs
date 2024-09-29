@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 // creating objects of state so we wont need to create new state for each field
 export const Register = () => {
@@ -56,12 +57,12 @@ export const Register = () => {
 
         storeTokenInLS(resData.token)
 
-        alert("Successfully Registered");
+        toast.success("Successfully Registered");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
       }
       else{
-        alert(resData.extraDetails?resData.extraDetails:resData.message)
+        toast.error(resData.extraDetails?resData.extraDetails:resData.message)
       }
     } catch (error) {
       console.log("Error in registration handle submit", error);

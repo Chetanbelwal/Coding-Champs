@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
-
+import { toast } from "react-toastify";
 const defaultContactFormData = {
   username: "",
   email: "",
@@ -56,11 +56,11 @@ export const Contact = () => {
       if (response.ok) {
         setContact(defaultContactFormData);
         const responseData = await response.json();
-        alert(responseData);
+        toast(responseData.message);
         console.log(responseData);
       } else {
         // Handle API error here
-        console.error("API Error:", response.status, response.statusText);
+        toast.error("API Error:", response.status, response.statusText);
       }
     } catch (error) {
       console.error(error);

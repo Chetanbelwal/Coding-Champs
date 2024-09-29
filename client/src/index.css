@@ -27,7 +27,7 @@ body {
   min-height: 100vh;
 }
 
- /*?  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical */
+
 
 h1 {
   font-size: 5.4rem;
@@ -56,6 +56,12 @@ a {
 
 li {
   list-style: none;
+}
+
+/* React Toastifier css */
+.toastBody {
+  font-family: "Atlas Grotesk web", Arial, Helvetica, sans-serif;
+  font-size: 1.7rem;
 }
 
 /*? layout Rule  */
