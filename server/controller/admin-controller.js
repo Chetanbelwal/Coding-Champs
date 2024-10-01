@@ -1,6 +1,6 @@
 const User = require("../models/user-model")
 
-const getAllUsers = async(req,res)=>{
+const getAllUsers = async(req,res, next)=>{
 try {
     // getting user data from users model but we dont need password
     const users = await User.find({},{password:0})
