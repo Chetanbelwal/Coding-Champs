@@ -59,7 +59,7 @@ export const Register = () => {
 
         toast.success("Successfully Registered");
         setUser({ username: "", email: "", phone: "", password: "" });
-        navigate("/login");
+        navigate("/");
       }
       else{
         toast.error(resData.extraDetails?resData.extraDetails:resData.message)
