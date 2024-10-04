@@ -8,9 +8,13 @@ import { Navbar } from "./components/Navbar";
 import { Service } from "./pages/Service";
 import { Login } from "./pages/Login";
 import { Logout } from "./pages/Logout";
+import { AdminLayout } from "./components/layouts/Admin-Layout";
+import {AdminUsers} from "./pages/Admin-Users"
+import {AdminContacts} from "./pages/Admin-Contacts"
 
 
 import "./App.css";
+
 
 const App = () => {
   return (
@@ -25,6 +29,12 @@ const App = () => {
           <Route path="/registration" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
+
+          {/* Using Nested Loop for Admin */}
+          <Route path="/admin" element = {<AdminLayout/>}>
+              <Route path="users" element = {<AdminUsers/>}></Route>
+              <Route path="contacts" element = {<AdminContacts/>}></Route>
+          </Route>
 
           {/* If any route other than above is visited we will redirect user to error 404 page */}
           <Route path="*" element={<Error />} />
