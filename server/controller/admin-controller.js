@@ -17,9 +17,24 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+//*********** * Get Single  user Data *  ***************
+
+const getUserById = async (req, res, next) => {
+    try {
+      //  Get user data by users model here we get user id from url using req.params.id
+      const id = req.params.id;
+      const data = await User.find({ _id: id }, { password: 0 });
+  
+      return res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+
 //*********** * Delete All users Data *  ***************
 
-const deletUserById = async (req, res, next) => {
+const deleteUserById = async (req, res, next) => {
   try {
     //  deleting user data by users model here we get user id from url using req.params.id
     const id = req.params.id;
@@ -30,6 +45,9 @@ const deletUserById = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
 //*********** */ Get All Contact Data /*  ***************
 const getAllContacts = async (req, res, next) => {
   try {
@@ -43,4 +61,4 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deletUserById };
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
