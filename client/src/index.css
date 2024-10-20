@@ -483,3 +483,74 @@ a.active {
     }
   }
 }
+
+
+/* Css for admin page */
+
+.admin-users-container {
+  /* Keep this as it is or adjust as needed */
+}
+
+.admin-users table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* Set table background to white */
+}
+
+.admin-users th, 
+.admin-users td {
+  padding: 1.6rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+  font-size: 1.6rem;
+  color: var(--dark-color); /* Set text color to dark for visibility */
+}
+
+.admin-users th {
+  background-color: var(--btn-color);
+  color: #fff; /* Keep header text white */
+}
+
+.admin-users tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternate row color */
+}
+
+.admin-users h1 {
+  font-size: 3.6rem;
+  margin-bottom: 2rem;
+  color: #000; /* Heading color */
+  text-align: center; /* Center the heading */
+}
+
+/* Edit and Delete Buttons */
+.admin-users td:nth-child(4),
+.admin-users td:nth-child(5) {
+  text-align: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem; /* Adjusted padding for smaller buttons */
+  border-radius: 1rem; /* Increased border radius for more roundness */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition for smooth effect */
+}
+
+/* Edit Button */
+.admin-users td:nth-child(4) {
+  background-color: transparent; /* Default background */
+  color: var(--btn-color); /* Default text color */
+}
+
+.admin-users td:nth-child(4):hover {
+  background-color: #28a745; /* Green background on hover */
+  color: #fff; /* White text color on hover */
+}
+
+/* Delete Button */
+.admin-users td:nth-child(5) {
+  background-color: transparent; /* Default background */
+  color: var(--btn-color); /* Default text color */
+}
+
+.admin-users td:nth-child(5):hover {
+  background-color: #dc3545; /* Red background on hover */
+  color: #fff; /* White text color on hover */
+}
