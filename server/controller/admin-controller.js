@@ -20,17 +20,37 @@ const getAllUsers = async (req, res, next) => {
 //*********** * Get Single  user Data *  ***************
 
 const getUserById = async (req, res, next) => {
-    try {
-      //  Get user data by users model here we get user id from url using req.params.id
-      const id = req.params.id;
-      const data = await User.findOne({ _id: id }, { password: 0 });
-  
-      return res.status(200).json(data);
-    } catch (error) {
-      next(error);
-    }
-  };
+  try {
+    //  Get user data by users model here we get user id from url using req.params.id
+    const id = req.params.id;
+    const data = await User.findOne({ _id: id }, { password: 0 });
 
+    return res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//*********** * Update Single  user Data *  ***************
+
+const updateUserById = async (req, res, next) => {
+  try {
+    //  Get user data by users model here we get user id from url using req.params.id
+    const id = req.params.id;
+    // whatever the data we have Put on for updating will be stored in req.body and we can get it
+    const updatedUserData = req.body;
+
+    // Use updateOne to update the user document with the given ID
+    const updatedData = await User.updateOne(
+      { _id: id }, // The condition to find the user by ID
+      { $set: updatedUserData } // Set the updated fields from req.body
+    );
+
+    return res.status(200).json(updatedData);
+  } catch (error) {
+    next(error);
+  }
+};
 
 //*********** * Delete All users Data *  ***************
 
@@ -46,8 +66,6 @@ const deleteUserById = async (req, res, next) => {
   }
 };
 
-
-
 //*********** */ Get All Contact Data /*  ***************
 const getAllContacts = async (req, res, next) => {
   try {
@@ -61,4 +79,10 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
+module.exports = {
+  getAllUsers,
+  getAllContacts,
+  deleteUserById,
+  getUserById,
+  updateUserById,
+};
