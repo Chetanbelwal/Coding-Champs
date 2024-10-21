@@ -11,9 +11,10 @@ import { Logout } from "./pages/Logout";
 import { AdminLayout } from "./components/layouts/Admin-Layout";
 import {AdminUsers} from "./pages/Admin-Users"
 import {AdminContacts} from "./pages/Admin-Contacts"
-
+import {AdminUpdate} from "./pages/Admin-Update"
 
 import "./App.css";
+
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/admin" element = {<AdminLayout/>}>
               <Route path="users" element = {<AdminUsers/>}></Route>
               <Route path="contacts" element = {<AdminContacts/>}></Route>
+              <Route path="users/:id/edit" element = {<AdminUpdate/>}></Route>
           </Route>
 
           {/* If any route other than above is visited we will redirect user to error 404 page */}

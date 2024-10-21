@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
+import { Link } from "react-router-dom";
 
 export const AdminUsers = () => {
   const { authorizationToken } = useAuth();
@@ -22,26 +23,27 @@ export const AdminUsers = () => {
     }
   };
 
-//   Function which will Trigger when user will click on Delete Button
-const deleteUser = async(id)=>{
+  //   Function which will Trigger when user will click on Delete Button
+  const deleteUser = async (id) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/delete/${id}`,
+        {
           method: "DELETE",
           headers: {
             Authorization: authorizationToken,
           },
-        });
-  
-        if (response.ok){
-            console.log("User deleted successfully")
-            getAllUsersData()
         }
-      } catch (error) {
-        console.log(error);
+      );
+
+      if (response.ok) {
+        console.log("User deleted successfully");
+        getAllUsersData();
       }
-}
-
-
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getAllUsersData();
@@ -68,17 +70,23 @@ const deleteUser = async(id)=>{
               users.map((curUser, index) => {
                 return (
                   <tr key={index}>
-                    <td>{curUser.username}</td> 
+                    <td>{curUser.username}</td>
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
-                    <td>Edit</td>
-                    <td><button onClick={()=>deleteUser(curUser._id)}>Delete</button></td>
+                    <td>
+                      <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                    </td>
+                    <td>
+                      <button onClick={() => deleteUser(curUser._id)}>
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 );
               })
             ) : (
               <tr>
-                <td colSpan="5">No users found.</td> 
+                <td colSpan="5">No users found.</td>
               </tr>
             )}
           </tbody>
