@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
@@ -8,13 +9,19 @@ export const AdminUpdate = () => {
     email: "",
     phone: "",
   });
-  
 
+  const navigate = useNavigate();
   const params = useParams();
   const { authorizationToken } = useAuth();
 
-  const handleInput = () => {
-    console.log("Clicked on handleInput");
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setData({
+      ...data, // Spread the existing data to preserve other fields
+      [name]: value, // Dynamically update the specific field
+    });
   };
 
   //   Function which will show user data
@@ -33,8 +40,6 @@ export const AdminUpdate = () => {
       const fetchedData = await response.json();
       setData(fetchedData);
       console.log("Users fetched data:", fetchedData);
-
-
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +49,34 @@ export const AdminUpdate = () => {
     getSingleUserData();
   }, []);
 
+  // Function that handle when form is submitted
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authorizationToken,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (response.ok) {
+        console.log("User Updated successfully");
+        toast.success("User Updated successfully");
+        navigate("/admin/users");
+      } else {
+        toast.error("User Updation Failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="section-contact">
       <div className="contact-content container">
@@ -52,7 +85,7 @@ export const AdminUpdate = () => {
 
       <div className="container grid grid-two-cols">
         <section className="section-form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username</label>
               <input
