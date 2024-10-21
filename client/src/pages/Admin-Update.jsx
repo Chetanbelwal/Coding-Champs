@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
@@ -6,10 +8,41 @@ export const AdminUpdate = () => {
     email: "",
     phone: "",
   });
+  
+
+  const params = useParams();
+  const { authorizationToken } = useAuth();
 
   const handleInput = () => {
     console.log("Clicked on handleInput");
   };
+
+  //   Function which will show user data
+  const getSingleUserData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/${params.id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+
+      const fetchedData = await response.json();
+      setData(fetchedData);
+      console.log("Users fetched data:", fetchedData);
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSingleUserData();
+  }, []);
 
   return (
     <section className="section-contact">

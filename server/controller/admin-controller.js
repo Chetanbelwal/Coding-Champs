@@ -23,7 +23,7 @@ const getUserById = async (req, res, next) => {
     try {
       //  Get user data by users model here we get user id from url using req.params.id
       const id = req.params.id;
-      const data = await User.find({ _id: id }, { password: 0 });
+      const data = await User.findOne({ _id: id }, { password: 0 });
   
       return res.status(200).json(data);
     } catch (error) {
