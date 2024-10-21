@@ -58,9 +58,12 @@ export const AdminUpdate = () => {
         {
           method: "PATCH",
           headers: {
+            // indicates that the body of the request contains JSON data.
             "Content-Type": "application/json",
             Authorization: authorizationToken,
           },
+
+          // When making HTTP requests, specifically POST, PUT, or PATCH requests, we often need to send data to the server in the form of JSON. Servers usually expect the request body to be in JSON format, not as a plain JavaScript object.
           body: JSON.stringify(data),
         }
       );
