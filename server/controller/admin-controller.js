@@ -52,7 +52,7 @@ const updateUserById = async (req, res, next) => {
   }
 };
 
-//*********** * Delete All users Data *  ***************
+//*********** * Delete users Data *  ***************
 
 const deleteUserById = async (req, res, next) => {
   try {
@@ -65,6 +65,21 @@ const deleteUserById = async (req, res, next) => {
     next(error);
   }
 };
+
+//*********** * Delete Contact Data *  ***************
+
+const deleteContactById = async (req, res, next) => {
+  try {
+    //  deleting contact data by contact model here we get user id from url using req.params.id
+    const id = req.params.id;
+    await Contact.deleteOne({ _id: id });
+
+    return res.status(200).json({ message: "Contact Record deleted Successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 //*********** */ Get All Contact Data /*  ***************
 const getAllContacts = async (req, res, next) => {
@@ -85,4 +100,5 @@ module.exports = {
   deleteUserById,
   getUserById,
   updateUserById,
+  deleteContactById,
 };

@@ -523,34 +523,38 @@ a.active {
 }
 
 /* Edit and Delete Buttons */
-.admin-users td:nth-child(4),
-.admin-users td:nth-child(5) {
+.admin-users td button,
+.admin-users td a {
   text-align: center;
   font-size: 1.4rem;
   cursor: pointer;
   padding: 0.4rem 0.8rem; /* Adjusted padding for smaller buttons */
   border-radius: 1rem; /* Increased border radius for more roundness */
   transition: background-color 0.3s ease, color 0.3s ease; /* Transition for smooth effect */
+  border: none;
+  text-decoration: none;
 }
 
-/* Edit Button */
-.admin-users td:nth-child(4) {
+/* Edit Button (only applies to Edit link in the 4th column on Users page) */
+.admin-users tr td:nth-child(4) a {
   background-color: transparent; /* Default background */
   color: var(--btn-color); /* Default text color */
 }
 
-.admin-users td:nth-child(4):hover {
+.admin-users tr td:nth-child(4) a:hover {
   background-color: #28a745; /* Green background on hover */
   color: #fff; /* White text color on hover */
 }
 
-/* Delete Button */
-.admin-users td:nth-child(5) {
+/* Delete Button (applies to Delete button in the 5th column on Users page or 4th on Contact page) */
+.admin-users tr td:nth-child(5) button,
+.admin-users tr td:nth-child(4) button {
   background-color: transparent; /* Default background */
   color: var(--btn-color); /* Default text color */
 }
 
-.admin-users td:nth-child(5):hover {
+.admin-users tr td:nth-child(5) button:hover,
+.admin-users tr td:nth-child(4) button:hover {
   background-color: #dc3545; /* Red background on hover */
   color: #fff; /* White text color on hover */
 }
