@@ -17,7 +17,7 @@ export const Register = () => {
   const navigate = useNavigate();
 
 // using method of our custom hook useAuth
-  const {storeTokenInLS} = useAuth()
+  const {storeTokenInLS, API} = useAuth()
 
   // Handling the input values
   const handleInput = (e) => {
@@ -37,7 +37,7 @@ export const Register = () => {
       e.preventDefault();
       console.log(user);
       const response = await fetch(
-        "http://localhost:5000/api/auth/registration",
+        `${API}/api/auth/registration`,
         {
           method: "POST",
           headers: {

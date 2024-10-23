@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
   const [services, setServices] = useState([]); 
   const authorizationToken = `Bearer ${token}`;
 
+  const API = import.meta.env.VITE_APP_API;
+
 
   // isLogged in will have true if we have token value and false if we don't have token value
   let isLoggedIn = !!token;
@@ -34,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   const userAuthentication = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:5000/api/auth/user", {
+      const response = await fetch(`${API}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -66,7 +68,7 @@ export const AuthProvider = ({ children }) => {
   // Function to fetch services data
   const getServiceData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/data/service", {
+      const response = await fetch(`${API}/api/data/service`, {
         method: "GET",
 
       });
@@ -90,7 +92,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ LogoutUser, storeTokenInLS, isLoggedIn, user, services, authorizationToken, loading }}
+      value={{ LogoutUser, storeTokenInLS, isLoggedIn, user, services, authorizationToken, loading,API }}
     >
       {children}
     </AuthContext.Provider>

@@ -12,7 +12,7 @@ export const AdminUpdate = () => {
 
   const navigate = useNavigate();
   const params = useParams();
-  const { authorizationToken } = useAuth();
+  const { authorizationToken , API} = useAuth();
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -28,7 +28,7 @@ export const AdminUpdate = () => {
   const getSingleUserData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/${params.id}`,
+        `${API}/api/admin/users/${params.id}`,
         {
           method: "GET",
           headers: {
@@ -54,7 +54,7 @@ export const AdminUpdate = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        `${API}/api/admin/users/update/${params.id}`,
         {
           method: "PATCH",
           headers: {
