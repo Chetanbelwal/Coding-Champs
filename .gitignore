@@ -16,6 +16,7 @@ build/Release
 jspm_packages/
 typings/
 .npm
+.txt
 .eslintcache
 .node_repl_history
 *.tgz
