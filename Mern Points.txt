@@ -4,7 +4,6 @@ Create server file and server
 and routes create kro using express.router()
 Router is mini expresss
 
-
 2 router ke code ko b simplify krne ke liye we can use controller 
 create a folder and file controller inside that create controller and usko router ma call krlo 
 
