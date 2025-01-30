@@ -17,7 +17,7 @@ export const AdminUsers = () => {
 
       const data = await response.json();
       setUsers(data);
-      console.log("Users:", data);
+      // console.log("Users:", data);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +37,7 @@ export const AdminUsers = () => {
       );
 
       if (response.ok) {
-        console.log("User deleted successfully");
+        // console.log("User deleted successfully");
         getAllUsersData();
       }
     } catch (error) {

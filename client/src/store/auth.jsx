@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
         setServices(services.data); // Update the state with the fetched data
         
       }
-      console.log("Services: ", response); 
+      // console.log("Services: ", response); 
 
     } catch (error) {
       console.error("Error:", error);

@@ -16,12 +16,12 @@ const authMiddleware = async (req, res, next) => {
 
   // Assuming token is in the format "Bearer <jwtToken>, Removing the "Bearer" prefix"
   const jwtToken = token.replace("Bearer", "").trim();
-  console.log(jwtToken);
+  // console.log(jwtToken);
 
   try {
     // Verifying the token it will give us all the data we pass as payload using jwt.sign
     const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
-    console.log(isVerified);
+    // console.log(isVerified);
 
     // getting the complete user details & also we don't want password to be sent
     const userData = await User.findOne({ email: isVerified.email }).select({

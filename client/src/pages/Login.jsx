@@ -18,7 +18,7 @@ export const Login = () => {
   const { storeTokenInLS, API } = useAuth();
 
   const handleInput = (e) => {
-    console.log(e);
+    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
@@ -42,7 +42,7 @@ export const Login = () => {
       });
       // response itself consist of the data that we passed to it from server there we have sent out the token also
       const resData = await response.json();
-      console.log("Response from server", resData);
+      // console.log("Response from server", resData);
       if (response.ok) {
         
 
@@ -56,7 +56,7 @@ export const Login = () => {
         toast.error(resData.extraDetails?resData.extraDetails:resData.message)
         // alert("Invalid cred")
       }
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log("Error in login handle submit", error);
     }

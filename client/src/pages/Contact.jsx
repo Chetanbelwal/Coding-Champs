@@ -50,14 +50,14 @@ export const Contact = () => {
         body: JSON.stringify(contact),
       });
 
-      console.log("response: ", response);
+      // console.log("response: ", response);
       // alert(response);
 
       if (response.ok) {
         setContact(defaultContactFormData);
         const responseData = await response.json();
         toast(responseData.message);
-        console.log(responseData);
+        // console.log(responseData);
       } else {
         // Handle API error here
         toast.error("API Error:", response.status, response.statusText);

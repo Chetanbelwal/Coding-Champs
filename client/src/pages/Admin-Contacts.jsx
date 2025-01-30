@@ -16,7 +16,7 @@ export const AdminContacts = () => {
 
       const data = await response.json();
       setContact(data);
-      console.log("Contact Data:", data);
+      // console.log("Contact Data:", data);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +36,7 @@ export const AdminContacts = () => {
       );
 
       if (response.ok) {
-        console.log("Contact deleted successfully");
+        // console.log("Contact deleted successfully");
         getAllContactData();
       }
     } catch (error) {

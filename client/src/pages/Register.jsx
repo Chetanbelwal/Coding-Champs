@@ -21,7 +21,7 @@ export const Register = () => {
 
   // Handling the input values
   const handleInput = (e) => {
-    console.log(e);
+    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
@@ -49,7 +49,7 @@ export const Register = () => {
 
        // response itself consist of the data that we passed to it from server there we have sent out the token also
        const resData = await response.json()
-       console.log("Response from server",resData)
+      //  console.log("Response from server",resData)
       if (response.ok) {
        
 

@@ -6,7 +6,7 @@ const app = express();
 
 // handling corsOptions
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: [process.env.FRONTEND_URL],
   methodS: "POST, PUT, PATCH, DELETE, HEAD"
 }
 app.use(cors(corsOptions))

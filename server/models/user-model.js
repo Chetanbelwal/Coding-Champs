@@ -68,7 +68,7 @@ userSchema.pre("save", async function (next) {
     const saltedRound = await bcrypt.genSalt(10); // Generate a salt with a cost factor of 10
     const hashedPassword = await bcrypt.hash(user.password, saltedRound); // Hash the password with the generated salt
     user.password = hashedPassword;
-    console.log("Hashed", user);
+    // console.log("Hashed", user);
   } catch (error) {
     next(error);
   }

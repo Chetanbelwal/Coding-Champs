@@ -39,7 +39,7 @@ export const AdminUpdate = () => {
 
       const fetchedData = await response.json();
       setData(fetchedData);
-      console.log("Users fetched data:", fetchedData);
+      // console.log("Users fetched data:", fetchedData);
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +69,7 @@ export const AdminUpdate = () => {
       );
 
       if (response.ok) {
-        console.log("User Updated successfully");
+        // console.log("User Updated successfully");
         toast.success("User Updated successfully");
         navigate("/admin/users");
       } else {

@@ -9,7 +9,7 @@ export const AdminLayout = () => {
 
  const { user, loading } = useAuth();
 
-console.log("user data",user)
+// console.log("user data",user)
 
 if(loading){
 return <h1>Loading...</h1>
