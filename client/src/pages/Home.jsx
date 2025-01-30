@@ -7,8 +7,8 @@ export const Home = () => {
         <section className="section-hero">
           <div className="container grid grid-two-cols">
             <div className="hero-content">
-              <p>We are the World Best IT Company</p>
-              <h1>Welcome to Thapa Technical</h1>
+              <p>We are the World Best Coding Tutors</p>
+              <h1>Welcome to Coding Champs</h1>
               <p>
                 Are you ready to take your business to the next level with
                 cutting-edge IT solutions? Look no further! At Thapa Technical,

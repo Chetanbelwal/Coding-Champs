@@ -18,7 +18,7 @@ const home = async (req, res) => {
 //3 hash password
 //4 Create User
 //5 Save it to database
-//6 Respond with registration successfull
+//6 Respond with registration successful
 
 const registration = async (req, res) => {
   try {
