@@ -11,7 +11,7 @@ export const Navbar = () => {
       <header>
         <div className="container">
           <div className="brand-logo">
-            <NavLink to="/">Chetan</NavLink>
+            <NavLink to="/">Coding Champs 🚀</NavLink>
           </div>
           <nav>
             <ul>

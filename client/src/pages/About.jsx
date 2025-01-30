@@ -14,36 +14,43 @@ export const About = () => {
               {/* <p>We care to cure your Health</p> */}
               <h1>
                 {user && user.username
-                  ? `Welcome, ${user.username} to our website`
-                  : "Welcome to our website"}
+                  ? `Welcome, ${user.username} to Coding Champs`
+                  : "Welcome to Coding Champs"}
               </h1>
               <p>
-                Expertise: Our team consists of experienced IT professionals who
-                are passionate about staying up-to-date with the latest industry
-                trends.
-              </p>
+                {" "}
+                **Expertise**: Our team of skilled developers and educators
+                stays current with the latest coding trends to offer you
+                practical, real-world knowledge.{" "}
+              </p>{" "}
               <p>
-                Customization: We understand that every business is unique.
-                Thats why we create solutions that are tailored to your specific
-                needs and goals.
-              </p>
+                {" "}
+                **Customization**: We understand every learner is unique. Our
+                personalized learning paths help you master the skills that
+                matter most to you.{" "}
+              </p>{" "}
               <p>
-                Customer-Centric Approach: We prioritize your satisfaction and
-                provide top-notch support to address your IT concerns.
-              </p>
+                {" "}
+                **Student-Centric Approach**: Your success is our priority. We
+                provide dedicated support to guide you through your coding
+                journey.{" "}
+              </p>{" "}
               <p>
-                Affordability: We offer competitive pricing without compromising
-                on the quality of our services.
-              </p>
+                {" "}
+                **Affordability**: Get high-quality coding education at
+                competitive prices. We ensure our courses maintain excellent
+                standards without breaking the bank.{" "}
+              </p>{" "}
               <p>
-                Reliability: Count on us to be there when you need us. We're
-                committed to ensuring your IT environment is reliable and
-                available 24/7.
+                {" "}
+                **Reliability**: We’re here when you need us, offering
+                consistent access to resources and support to keep you on track
+                with your coding goals.{" "}
               </p>
               <div className="btn btn-group">
                 <NavLink to="/contact">
                   <button className="btn"> Connect Now</button>
-                </NavLink>
+                </NavLink >
                 <button className="btn secondary-btn">learn more</button>
               </div>
             </div>
